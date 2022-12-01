@@ -31,8 +31,8 @@ public class Search_test extends Search_Page{
 	
 	public void select_currency() {
 	
-		Select drpCountry = new Select(driver.findElement(By.id("customerCurrency")));
-		drpCountry.selectByVisibleText("Euro");
+		Select drpCurrency = new Select(driver.findElement(By.id("customerCurrency")));
+		drpCurrency.selectByVisibleText("Euro");
 		
 		
 	}
@@ -51,6 +51,83 @@ public class Search_test extends Search_Page{
 	}
 	
 	
+	@Test
+	public void select_color() {
+		driver.get("https://demo.nopcommerce.com/shoes");
+		driver.findElement(By.id("attribute-option-14")) .click();
+		
+	}
+	
+
+	@Test
+	public void select_Tag() {
+		driver.get("https://demo.nopcommerce.com/shoes");
+		driver.findElement(By.className("button-2 product-box-add-to-cart-button")).click();
+		
+	}
+	
+	
+	@Test
+	public void select_wishlist() {
+		driver.get("https://demo.nopcommerce.com/shoes");
+		driver.findElement(By.className("button-2 add-to-wishlist-button")).click();
+		
+	}
+	
+	@Test
+	public void select_comparelist() {
+		driver.get("https://demo.nopcommerce.com/shoes");
+		driver.findElement(By.className("button-2 add-to-compare-list-button")).click();
+		
+	}
+	
+	@Test
+	public void create_order() {
+		driver.get("https://demo.nopcommerce.com/shoes");
+		driver.findElement(By.className("button-2 product-box-add-to-cart-button")).click();
+		
+		driver.get("https://demo.nopcommerce.com/cart");
+		driver.findElement(By.id("termsofservice")).click();
+		driver.findElement(By.id("checkout")).click();
+		wait(20);
+		Base_page_driver.findElement("BillingNewAddress_CountryId").sendKeys("Egypt");
+		Base_page_driver.findElement("BillingNewAddress_City").sendKeys("Cairo");
+		Base_page_driver.findElement("BillingNewAddress_Address1").sendKeys("home");
+		Base_page_driver.findElement("BillingNewAddress_ZipPostalCode").sendKeys("12111");
+		Base_page_driver.findElement("BillingNewAddress_PhoneNumber").sendKeys("1234567");
+
+		
+		Base_page_driver.findElement("button-1 new-address-next-step-button").click();
+		wait(20);
+		Base_page_driver.findElement("button-1 payment-method-next-step-button").click();
+		wait(20)
+		Base_page_driver.findElement("button-1 payment-info-next-step-button").click();
+		wait(20)
+		Base_page_driver.findElement("button-1 payment-info-next-step-button").click();
+		wait(20)
+
+		String success = driver.findElement(By.linkText("Click here for order details.")).getText();
+		Assert.assertequals(success,"Click here for order details.");
+		
+		
+		
+
+
+
+
+
+
+		
+
+		
+	}
+	
+	
+	
+		}
+
+
+
 	
 	
 
